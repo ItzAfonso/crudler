@@ -8,7 +8,7 @@ export const App = () => {
   //View
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
+      <Text>Hello</Text>
       <StatusBar styl ="auto" />
     </View>
   );
