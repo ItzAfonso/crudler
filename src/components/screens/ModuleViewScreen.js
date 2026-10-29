@@ -8,7 +8,7 @@ const ModuleViewScreen = () => {
   //View
   return (
     <Screen>
-      <Text>View</Text>
+      <Text> View </Text>
     </Screen>
   );
 };
