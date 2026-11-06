@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import Icons from '../../UI/icons.js';
+import Icons from '../../UI/Icons.js';
 import Form from '../../UI/Form.js';
 
 const defaultModule = {
@@ -38,6 +38,7 @@ const ModuleForm = ({ onSubmit, onCancel }) => {
     // View -----------------------------------
     const submitLabel = 'Add';
     const submitIcon = <Icons.Add />;
+
     return (
         <Form
             onSubmit={handleSubmit}
