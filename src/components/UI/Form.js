@@ -1,5 +1,4 @@
-
-import { KeyboardAvoidingView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import Icons from './Icons.js';
 import { Button, ButtonTray } from './Button.js';
@@ -10,7 +9,10 @@ const Form = ({ children, onSubmit, onCancel, submitLabel, submitIcon }) => {
     // Handlers -------------------------------
     // View -----------------------------------
     return (
-        <KeyboardAvoidingView style={styles.formContainer}>
+        <KeyboardAvoidingView
+            style={styles.formContainer}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
             <ScrollView contentContainerStyle={styles.formItems}>{children}</ScrollView>
 
             <ButtonTray>

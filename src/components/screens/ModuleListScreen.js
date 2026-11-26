@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import Screen from '../layout/Screen';
@@ -15,23 +14,36 @@ const ModuleListScreen = ({ navigation }) => {
     const [modules, setModules] = useState(initialModules);
 
     // Handlers ---------------------------
-    const handleDelete = (module) =>
-        setModules(modules.filter((item) => item.ModuleID !== module.ModuleID));
-
     const handleAdd = (module) => setModules([...modules, module]);
-
-    const onDelete = (module) => {
-        handleDelete(module);
-        navigation.goBack();
-    };
 
     const onAdd = (module) => {
         handleAdd(module);
         navigation.goBack();
     };
 
+    const handleModify = (updatedModule) =>
+        setModules(
+            modules.map((module) => (module.ModuleID === updatedModule.ModuleID ? updatedModule : module))
+        );
+
+    const onModify = (module) => {
+        handleModify(module);
+        // navigation.navigate('ModuleListScreen'); // Strategy 0
+        // navigation.popToTop(); // Strategy 1
+
+        navigation.replace('ModuleViewScreen', { module, onDelete, onModify }); // Strategy 2a
+    };
+
+    const handleDelete = (module) =>
+        setModules(modules.filter((item) => item.ModuleID !== module.ModuleID));
+
+    const onDelete = (module) => {
+        handleDelete(module);
+        navigation.goBack();
+    };
+
     const gotoViewScreen = (module) =>
-        navigation.navigate('ModuleViewScreen', { module, onDelete });
+        navigation.navigate('ModuleViewScreen', { module, onDelete, onModify });
 
     const gotoAddScreen = () =>
         navigation.navigate('ModuleAddScreen', { onAdd });
